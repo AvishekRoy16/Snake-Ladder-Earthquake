@@ -97,8 +97,16 @@ def get_player_names():
     while not player2_name:
         player2_name = input("Please enter a valid name for second player: ").strip()
 
-    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "'\n")
-    return player1_name, player2_name
+    player3_name = None
+    while not player3_name:
+        player3_name = input("Please enter a valid name for third player: ").strip()
+
+    player4_name = None
+    while not player4_name:
+        player4_name = input("Please enter a valid name for fourth player: ").strip()
+
+    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "' and '" + player3_name + "' and '" + player4_name + "'\n")
+    return player1_name, player2_name, player3_name, player4_name
 
 
 def get_dice_value():
@@ -154,11 +162,13 @@ def check_win(player_name, position):
 def start():
     welcome_msg()
     time.sleep(SLEEP_BETWEEN_ACTIONS)
-    player1_name, player2_name = get_player_names()
+    player1_name, player2_name, player3_name, player4_name = get_player_names()
     time.sleep(SLEEP_BETWEEN_ACTIONS)
 
     player1_current_position = 0
     player2_current_position = 0
+    player3_current_position = 0
+    player4_current_position = 0
 
     while True:
         time.sleep(SLEEP_BETWEEN_ACTIONS)
@@ -179,6 +189,24 @@ def start():
         player2_current_position = snake_ladder(player2_name, player2_current_position, dice_value)
 
         check_win(player2_name, player2_current_position)
+
+        input_3 = input("\n" + player3_name + ": " + random.choice(player_turn_text) + " Hit the enter to roll dice: ")
+        print("\nRolling dice...")
+        dice_value = get_dice_value()
+        time.sleep(SLEEP_BETWEEN_ACTIONS)
+        print(player3_name + " moving....")
+        player3_current_position = snake_ladder(player3_name, player3_current_position, dice_value)
+
+        check_win(player3_name, player3_current_position)
+
+        input_4 = input("\n" + player4_name + ": " + random.choice(player_turn_text) + " Hit the enter to roll dice: ")
+        print("\nRolling dice...")
+        dice_value = get_dice_value()
+        time.sleep(SLEEP_BETWEEN_ACTIONS)
+        print(player4_name + " moving....")
+        player4_current_position = snake_ladder(player4_name, player4_current_position, dice_value)
+
+        check_win(player4_name, player4_current_position)
 
 
 if __name__ == "__main__":
