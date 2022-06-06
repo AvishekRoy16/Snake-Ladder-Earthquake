@@ -16,7 +16,7 @@ AdPushup (New Delhi, India Office). Check out http://careers.adpushup.com
             moveSpeed: 150,
             runSpeed: 15,
             colors: ["red", "blue", "green", "black"],
-            snakeLadderLayer: "images/snake_ladder_layer.gif",
+            snakeLadderLayer: "static/images/snake_ladder_layer.gif",
             snakes: [{s: 36,e: 2}, {s: 46,e: 29}, {s: 79,e: 42}, {s: 93,e: 53}],
             ladders: [{s: 8,e: 49}, {s: 22,e: 57}, {s: 54,e: 85}, {s: 61,e: 98}]
         };
@@ -174,13 +174,13 @@ AdPushup (New Delhi, India Office). Check out http://careers.adpushup.com
         }
         this.createBoard();
         
-        var img = new Image('images/face0.gif');
-        img = new Image('images/face1.png');
-        img = new Image('images/face2.png');
-        img = new Image('images/face3.png');
-        img = new Image('images/face4.png');
-        img = new Image('images/face5.png');
-        img = new Image('images/face6.png');
+        var img = new Image('static/images/face0.gif');
+        img = new Image('static/images/face1.png');
+        img = new Image('static/images/face2.png');
+        img = new Image('static/images/face3.png');
+        img = new Image('static/images/face4.png');
+        img = new Image('static/images/face5.png');
+        img = new Image('static/images/face6.png');
     }
     
     b.createBoard = function() {
@@ -302,7 +302,7 @@ AdPushup (New Delhi, India Office). Check out http://careers.adpushup.com
     
     b.rollDice = function() {
         var dice = document.getElementById('dice');
-        dice.src = 'images/face0.gif';
+        dice.src = 'static/images/face0.gif';
     }
     
     b.showDice = function(value) {
@@ -312,7 +312,7 @@ AdPushup (New Delhi, India Office). Check out http://careers.adpushup.com
             return false;
         }
         var dice = document.getElementById('dice');
-        dice.src = 'images/face' + value + '.png';
+        dice.src = 'static/images/face' + value + '.png';
     }
     
     b.log = function(message) {
