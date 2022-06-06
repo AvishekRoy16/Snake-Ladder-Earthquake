@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>DICE ROLL USING JAVASCRIPT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<div class="container">
+  <div class="dice-wrap">
+    <img id="dice-1">
+    <img id="dice-2">
+  </div>
+  <p id="total"></p>
+  <button onclick="RollDice()">ROLL THE DICE</button>
+</div>
+
+<script src="{{ url_for('static', filename='jscript.js')}}"></script>
+</body>
+</html>
