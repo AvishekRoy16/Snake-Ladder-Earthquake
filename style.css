@@ -1,0 +1,76 @@
+#snakenladderBoard {
+    background: url(https://s-media-cache-ak0.pinimg.com/originals/03/c3/ab/03c3ab693eedcd84c1119a947974cb93.jpg) no-repeat;
+    float:left;
+    position: relative;
+  }
+  #statistics {
+    float:left;
+    width:350px;
+    padding: 0 10px;
+  }
+  .row {
+    clear: both;
+  }
+
+  .row div,.player {
+    width: 94px;
+    height: 94px;
+    float: left;
+    margin: 1px;
+  }
+  .row:after,.row div:after,.player:after,#snakenladderBoard:after, #statistics:after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+
+  /* .row div, #players {
+    position: relative;
+  } */
+  #players .player {
+      top: -500px;
+  }
+  .player {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    border: 1px solid #f0f0f0;
+    box-shadow: -1px -1px 16px 1px #666, 1px 1px 16px 1px #bbb;
+    -webkit-transition: left 3s, top 3s; /* For Safari 3.1 to 6.0 */
+    transition: left 3s, top 3s;
+  }
+  .legends{
+      border:1px solid #666;
+      padding:10px;
+      margin:5px 0;
+  }
+  .legends.active {
+      border-width: 3px;
+  }
+  .legends span{
+      float:right;
+  }
+  .blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  #dice{
+      width: 50px;height:50px;
+      border: 1px solid #f0f0f0;
+      border-radius : 5px;
+  }
+  #gameMessage {height:30px;font-weight:bold;}
+  #copyright {clear:both;background:black;padding:20px;color:white;font-size:85%;}
