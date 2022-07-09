@@ -5,60 +5,38 @@ String.prototype.replaceAt=function(index, replacement) {
 
 var form =  document.getElementById('form')
 var player1, player2, player3;
-form.addEventListener('submit', function(event){
-	event.preventDefault()
-	player1 = document.getElementById('p1').value
-	player2 = document.getElementById('p2').value
-	player3 = document.getElementById('p3').value
-	console.log(player1)
-	console.log(player2)
-	console.log(player3)     
-	// window.location.href="home.html";	
-});
-// setTimeout(function(){
-// alert(player1)},10000)
 var SnakeLadderModule = (function(){
 	var snakes = {
-	  16: 6,
-	  46: 25,
-	  49: 11,
-	  62: 19,
-	  64: 60,
-	  74: 53,
-	  89: 68,
-	  92: 88,
-	  95: 75,
-	  99: 80
+	  36: 15,
+	  41: 19,
+	  79: 58,
+	  92: 71,
+	  95: 34,
 	};
 	var ladders = {
-	  2: 38,
-	  7: 14,
-	  8: 31,
-	  15: 26,
-	  21: 42,
-	  28: 84,
-	  36: 44,
-	  51: 67,
-	  71: 91,
-	  78: 98,
-	  87: 94
+	  8: 14,
+	  10: 29,
+	  17: 43,
+	  28: 74,
+	  31: 70,
+	  45: 84,
+	  61: 98,
 	};
-	setTimeout(function(){
-	var players = [{
-	  name: player1,
-	  position: 0,
-	  bg: '#f55bf5'
-	}, {
-	  name: 'Sanvi',
-	  position: 0,
-	  bg: '#75ff79'
-	}, {
-	  name: 'Rani',
-	  position: 0,
-	  bg: '#fffb76'
-	}];},10000)
-	var idOfplayerTurn = 0;
+	
+	var questions=[
+		"what is ball?",
+		"what is bat?",
+		"what is Eathquake?",
+		"How many different type of natural disasters are there?",
+		"NIDM",
+		"Landslide prone region",
+		"Flood Effects",
+		"Is It Safe To Return Home",
 
+	]
+
+
+	var idOfplayerTurn = 0;
 	/// Create snake-ladder board
 	function initUI() {
 		for (var i = 0; i < 10; i++) {
@@ -75,10 +53,23 @@ var SnakeLadderModule = (function(){
 			}
 			$('#snakenladderBoard').append(decrow[0].outerHTML);
 		}
-	}
-
+		
+	}			
 	/// Build Players 
 	function BuildPlayers() {
+		var players = [{
+			name: player1,
+			position: 1,
+			bg: '#f55bf5'
+		  }, {
+			name: player2,
+			position: 1,
+			bg: '#75ff79'
+		  }, {
+			name: player3,
+			position: 1,
+			bg: '#fffb76'
+		  }];
 		for(var i=0; i<players.length; i++) {
 			var player = players[i];
 			var playerHtml = "<span id='player"+i+"' class='player' style='background-color:"+player.bg+"'></span>";
@@ -86,30 +77,67 @@ var SnakeLadderModule = (function(){
 			$("#players").append(playerHtml + playerLegendHtml);
 		}
 	}
+
+	var players = [{
+		name: player1,
+		position: 1,
+		bg: '#f55bf5'
+	  }, {
+		name: player2,
+		position: 1,
+		bg: '#75ff79'
+	  }, {
+		name: player3,
+		position: 1,
+		bg: '#fffb76'
+	  }];
+
 	function RandomizeDice() {
 	  return Math.floor(Math.random() * 6) + 1;
 	}
+	function Randomizequiz() {
+		return Math.floor(Math.random() * questions.length);
+	}
+
 	var init = function() {
-			initUI();
-			setTimeout(function(){
-			BuildPlayers();},10000)
+			initUI();	
+			BuildPlayers();
+			for(var i=0; i<players.length; i++) {
+				var player = players[i];
+				var $cell = $("#cell_" + player.position);
+				$("#player" + i).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
+				$("#playerLegend"+i).find('span').text(player.position); //currentPosition
+			}
 			$("#playerLegend"+(idOfplayerTurn)).addClass('active');
 		}
+		
+		
+
 	var rollDice = function() {
 		  var randm = RandomizeDice();
+		  console.log(randm)
+		  var qt = Randomizequiz();
+		  $("#ques").html(questions[qt]);
 		  idOfplayerTurn = idOfplayerTurn%players.length;
-		  
+		  $("button").attr('disabled', true);
 		  $(".legends").removeClass('active');
-		  $("#playerLegend"+((idOfplayerTurn+1)%players.length)).addClass('active');
-		  
+		  if(randm != 6){$("#playerLegend"+((idOfplayerTurn+1)%players.length)).addClass('active');}
+		  else{
+			$("#playerLegend"+((idOfplayerTurn)%players.length)).addClass('active');
+		  }
 		  var currentPosition = players[idOfplayerTurn].position;
 		  currentPosition += randm;
-      var $cell = $("#cell_" + currentPosition);
+		  	if(currentPosition>100){
+				currentPosition = 100
+			}
+
+      		var $cell = $("#cell_" + currentPosition);
 			$("#player" + idOfplayerTurn).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
 			$("#playerLegend"+idOfplayerTurn).find('span').text(currentPosition); //currentPosition  
 		  setTimeout(function(){
       if(currentPosition >= 100) {
-			  currentPosition = 100;
+			
+			currentPosition = 100;
 			$("#player" + idOfplayerTurn).appendTo("#cell_" + currentPosition);
 			$("#playerLegend"+idOfplayerTurn).find('span').text('Winner'); //currentPosition
 			$("button").attr('disabled', 'disabled');
@@ -117,12 +145,16 @@ var SnakeLadderModule = (function(){
 			  $.each(snakes, function(key, value) {
 				if (currentPosition == key) {
 				  currentPosition = value;
+				  var tom1 = new Audio("sounds/tom-1.mp3");
+      				tom1.play();
 				  return false;
 				}
 			  });
 			  $.each(ladders, function(key, value) {
 				if (currentPosition == key) {
 				  currentPosition = value;
+				  var tom1 = new Audio("sounds/tom-1.mp3");
+      				tom1.play();
 				  return false;
 				}
 			  });
@@ -138,24 +170,64 @@ var SnakeLadderModule = (function(){
 			  $('#dice').attr("src", imgSrc);
         
 			}
-      
-      
-      
-      players[idOfplayerTurn].position = currentPosition;
-			idOfplayerTurn++;
-      
+      		players[idOfplayerTurn].position = currentPosition;
+			for(j=0;j<players.length;j++){
+				if(j == idOfplayerTurn)
+				{
+					continue
+				}
+				if(players[idOfplayerTurn].position == players[j].position){
+					players[j].position = 1
+					var $cell = $("#cell_" + 1);
+					$("#player" + j).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
+					$("#playerLegend"+j).find('span').text(1); //currentPosition
+					break
+				}
+			}
+			if(randm != 6){
+				idOfplayerTurn++;
+			}
+
+			if(currentPosition != 100){$("button").attr('disabled', false);}		  
       },3000)
     		}
-		
 	return {
 		Init: init,
 		RollDice: rollDice
 	};
 })();
 
-
-SnakeLadderModule.Init();
-
-$("button").on("click", function() {
-	SnakeLadderModule.RollDice();
+form.addEventListener('submit', function(event){
+	event.preventDefault()
+	player1 = document.getElementById('p1').value
+	player2 = document.getElementById('p2').value
+	player3 = document.getElementById('p3').value   
+	document.getElementById('p1').style.visibility='hidden';
+	document.getElementById('p2').style.visibility='hidden';
+	document.getElementById('p3').style.visibility='hidden';
+	document.getElementById('t1').style.visibility='hidden';
+	document.getElementById('t2').style.visibility='hidden';
+	document.getElementById('t3').style.visibility='hidden';
+	document.getElementById('but').style.visibility='hidden';
+	SnakeLadderModule.Init();
+	// window.location.href="home.html";	
 });
+
+
+
+
+function rollfun(){
+	SnakeLadderModule.RollDice();
+}
+
+let popup  = document.getElementById("popup");
+function openPopup(){
+	setTimeout(function(){
+		popup.classList.add("open-popup");
+		quizques();
+		
+	},3000);
+	
+}
+function closePopup(){
+	popup.classList.remove("open-popup");}

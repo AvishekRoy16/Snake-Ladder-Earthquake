@@ -9,23 +9,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <form id="form">
-        Name of Player 1: <input type="text" id = p1 placeholder="Player 1" /> <br>
-        Name of Player 2: <input type="text" id = p2 placeholder="Player 2" /> <br>
-        Name of Player 3: <input type="text" id = p3 placeholder="Player 3" />  <br>
-        <input type = 'Submit' value="Submit">
-    </form>
+    
     <div id="snakenladderBoard"></div>
     <div id="statistics">
-        <div id="gameMessage">Snake and Ladder - <a href="https://jsfiddle.net/sugsyybw/1/" target="_blank">source code</a></div>
-        <img id ="dice" src="http://codora.de/roll-the-dice/resources/images/dice-3.png" />
-        <button>Roll</button>
+        <div id="gameMessage">Snake and Ladder</div>
+        <img id ="dice" src="" />
+        <button onclick="rollfun(); openPopup() ; Randomizeques()">Roll</button>
+        <div class="popup" id="popup">
+            <h2>Thank You!</h2>
+            <p id="ques"></p>
+            <button type="button" onclick="closePopup()">OK</button>
+            </div>
         <div id="players"></div>
+        <form id="form">
+            <b id = "t1">Name of Player 1:</b> <input type="text" id = p1 placeholder="Player 1" /> <br>
+            <b id = "t2">Name of Player 2:</b> <input type="text" id = p2 placeholder="Player 2" /> <br>
+            <b id = "t3">Name of Player 3:</b> <input type="text" id = p3 placeholder="Player 3" />  <br>
+            <input type = 'Submit' value="Done" id = "but">
+        </form>
     </div>
     
-    <footer id="copyright">Copyright &copy; 2007 Devanand Dhage.</footer>
 <script src="script.js"></script>
 <!-- <script src="a.js"></script> -->
 </body>
 </html>
-
