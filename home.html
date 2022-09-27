@@ -13,14 +13,38 @@
     <div id="snakenladderBoard"></div>
     <div id="statistics">
         <div id="gameMessage">Snake and Ladder</div>
-        <button onclick="rollfun(); openPopup() ; Randomizeques()"  id= "roll" >Roll</button>
-        
+        <button onclick="rollfun(); openPopup();"  id= "roll" >Roll</button>
+
         <div class="popup" id="popup">
-            <p id="ques"></p>
+            <!-- <p id="ques"></p>
             <button type="button" onclick="closePopup()" id="option1"></button>
             <button type="button" onclick="closePopup()" id="option2"></button>
             <button type="button" onclick="closePopup()" id="option3"></button>
-            <button type="button" onclick="closePopup()" id="option4"></button>
+            <button type="button" onclick="closePopup()" id="option4"></button> -->
+            <div class="quiz-container" id="quiz">
+                <div class="quiz-header">
+                  <h2 id="question">Question Text</h2>
+                  <ul>
+                    <li>
+                      <input type="radio" name="answer" id="a" class="answer">
+                      <label for="a" id="a_text">Answer</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="answer" id="b" class="answer">
+                      <label for="b" id="b_text">Answer</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="answer" id="c" class="answer">
+                      <label for="c" id="c_text">Answer</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="answer" id="d" class="answer">
+                      <label for="d" id="d_text">Answer</label>
+                    </li>
+                  </ul>
+                </div>
+                <button id="submit" onclick="closePopup();">Submit</button>
+            </div>
         </div>
 
         <div id="players">

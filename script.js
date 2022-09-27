@@ -22,28 +22,94 @@ var SnakeLadderModule = (function(){
 	  45: 84,
 	  61: 98,
 	};
+
+	const quizData = [
+		{
+			question: "Which language runs in a web browser?",
+			a: "Java",
+			b: "C",
+			c: "Python",
+			d: "javascript",
+			correct: "d",
+		},
+		{
+			question: "What does CSS stand for?",
+			a: "Central Style Sheets",
+			b: "Cascading Style Sheets",
+			c: "Cascading Simple Sheets",
+			d: "Cars SUVs Sailboats",
+			correct: "b",
+		},
+		{
+			question: "What does HTML stand for?",
+			a: "Hypertext Markup Language",
+			b: "Hypertext Markdown Language",
+			c: "Hyperloop Machine Language",
+			d: "Helicopters Terminals Motorboats Lamborginis",
+			correct: "a",
+		},
+		{
+			question: "What year was JavaScript launched?",
+			a: "1996",
+			b: "1995",
+			c: "1994",
+			d: "none of the above",
+			correct: "b",
+		},
+	];
 	
-	let y = new Boolean(false);
 
-	var questions=[
-		"what is Eathquake?",
-		"How many different type of natural disasters are there?",
-		"NIDM",
-		"Landslide prone region",
-		"Flood Effects",
-		"Is It Safe To Return Home",
-	]
-
-	var answers = [5,2,1,4,7,10]
-
-	var questionoptions = { "what is Eathquake?":[1,2,4,5],
-	"How many different type of natural disasters are there?":[1,2,3,5],
-	"NIDM":[1,2,3,4],
-	"Landslide prone region":[1,2,3,4],
-	"Flood Effects":[9,8,7,6],
-	"Is It Safe To Return Home":[10,11,12,13]
+	const quiz= document.getElementById('quiz')
+	const answerEls = document.querySelectorAll('.answer')
+	const questionEl = document.getElementById('question')
+	const a_text = document.getElementById('a_text')
+	const b_text = document.getElementById('b_text')
+	const c_text = document.getElementById('c_text')
+	const d_text = document.getElementById('d_text')
+	const submitBtn = document.getElementById('submit')
+	let currentQuiz = 0
+	// let score = 0
+	function Randomizequiz() {
+		return Math.floor(Math.random() * quizData.length);
+	}
+	var qt = Randomizequiz();
+	loadQuiz()
+	function loadQuiz() {
+		deselectAnswers()
+		const currentQuizData = quizData[qt]
+		questionEl.innerText = currentQuizData.question
+		a_text.innerText = currentQuizData.a
+		b_text.innerText = currentQuizData.b
+		c_text.innerText = currentQuizData.c
+		d_text.innerText = currentQuizData.d
+	}
+	function deselectAnswers() {
+		answerEls.forEach(answerEl => answerEl.checked = false)
+	}
+	function getSelected() {
+		let answer
+		answerEls.forEach(answerEl => {
+			if(answerEl.checked) {
+				answer = answerEl.id
+			}
+		})
+		return answer
+	}
+	var ans = function(){
+		const answer = getSelected()
+		if(answer === quizData[currentQuiz].correct){
+			return "true"
+		}else{
+			return "false"
+		}
 	}
 
+
+	
+	// submitBtn.addEventListener('click', () => {
+		
+	// })
+	
 
 	var idOfplayerTurn = 0;
 	/// Create snake-ladder board
@@ -105,9 +171,7 @@ var SnakeLadderModule = (function(){
 	  var roll_val = Math.floor(Math.random() * 6) + 1;
 	  return roll_val
 	}
-	function Randomizequiz() {
-		return Math.floor(Math.random() * questions.length);
-	}
+
 
 	var init = function() {
 			initUI();	
@@ -125,71 +189,6 @@ var SnakeLadderModule = (function(){
 
 	var rollDice = function() {
 		  var randm = RandomizeDice();
-		  console.log(randm)
-		  var qt = Randomizequiz();
-		  $("#ques").html(questions[qt]);
-		  var opt = questionoptions[questions[qt]];
-		  $("#option1").html(opt[0]);
-		  $("#option2").html(opt[1]);
-		  $("#option3").html(opt[2]);
-		  $("#option4").html(opt[3]);
-		  $("#option1").click(function(){
-			if(opt[0]==answers[qt]){
-				y = true;
-				alert("yes");
-				$("#th").html("yes");				
-			}
-			else{
-				y = false;
-				alert("no");
-				$("#th").html("no");
-				
-			}
-		  })
-
-		  $("#option2").click(function(){
-			if(opt[1]==answers[qt]){
-				y = true;
-				alert("yes");
-				$("#th").html("yes");				
-			}
-			else{
-				y = false;
-				alert("no");
-				$("#th").html("no");
-				
-			}
-		  })
-		  
-		  $("#option3").click(function(){
-			if(opt[2]==answers[qt]){
-				y = true;
-				alert("yes");
-				$("#th").html("yes");				
-			}
-			else{
-				y = false;
-				alert("no");
-				$("#th").html("no");
-				
-			}
-		  })
-		  $("#option4").click(function(){
-			if(opt[3]==answers[qt]){
-				y = true;
-				alert("yes");
-				$("#th").html("yes");				
-			}
-			else{
-				y = false;
-				alert("no")
-				$("#th").html("no");
-				
-			}
-		  })
-		  
-		  
-		  
 		  idOfplayerTurn = idOfplayerTurn%players.length;
 		  $("button").attr('disabled', true);
 		  $(".legends").removeClass('active');
@@ -230,16 +229,12 @@ var SnakeLadderModule = (function(){
 				  return false;
 				}
 			  });
-			  debugger;
+
 			  //$("#player" + idOfplayerTurn).appendTo("#cell_" + currentPosition);
 			  var $cell = $("#cell_" + currentPosition);
 			  $("#player" + idOfplayerTurn).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
 			  $("#playerLegend"+idOfplayerTurn).find('span').text(currentPosition); //currentPosition  
-			  
-			//   var re = /(\d)/;
-			//   var imgSrc = $('#dice').attr("src");
-			//   var imgSrc = imgSrc.replace(re, randm);
-			//   $('#dice').attr("src", imgSrc);
+
         
 			}
 			
@@ -267,7 +262,7 @@ var SnakeLadderModule = (function(){
     		}
 	return {
 		Init: init,
-		RollDice: rollDice
+		RollDice: rollDice,
 	};
 })();
 
@@ -295,15 +290,17 @@ $(document).ready(function(){
 
 
 
+
 function rollfun(){
 	SnakeLadderModule.RollDice();
 }
+
+
 
 let popup  = document.getElementById("popup");
 function openPopup(){
 	setTimeout(function(){
 		popup.classList.add("open-popup");
-		quizques();
 		
 	},3000);
 	
@@ -313,3 +310,5 @@ function closePopup(){
 
 function showDiv() {
 	document.getElementById('welcomeDiv').style.display = "block";}
+
+
