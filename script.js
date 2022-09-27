@@ -32,7 +32,6 @@ var SnakeLadderModule = (function(){
 		"Landslide prone region",
 		"Flood Effects",
 		"Is It Safe To Return Home",
-
 	]
 
 	var answers = [5,2,1,4,7,10]
@@ -103,7 +102,8 @@ var SnakeLadderModule = (function(){
 	  }];
 
 	function RandomizeDice() {
-	  return Math.floor(Math.random() * 6) + 1;
+	  var roll_val = Math.floor(Math.random() * 6) + 1;
+	  return roll_val
 	}
 	function Randomizequiz() {
 		return Math.floor(Math.random() * questions.length);
@@ -287,6 +287,11 @@ form.addEventListener('submit', function(event){
 	// window.location.href="home.html";	
 });
 
+$(document).ready(function(){
+	$("#but").click(function(){
+	  $("#roll").css('display', 'block');
+	});
+  });
 
 
 
@@ -305,3 +310,6 @@ function openPopup(){
 }
 function closePopup(){
 	popup.classList.remove("open-popup");}
+
+function showDiv() {
+	document.getElementById('welcomeDiv').style.display = "block";}

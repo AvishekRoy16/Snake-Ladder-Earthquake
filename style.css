@@ -3,6 +3,9 @@
     float:left;
     position: relative;
   }
+#roll{
+  display: none;
+}
   #statistics {
     float:left;
     width:350px;

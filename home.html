@@ -13,24 +13,24 @@
     <div id="snakenladderBoard"></div>
     <div id="statistics">
         <div id="gameMessage">Snake and Ladder</div>
-        <p></p>
-        <!-- <img id ="dice" src="" /> -->
-        <button onclick="rollfun(); openPopup() ; Randomizeques()">Roll</button>
-        <h2 id="th"></h2>
+        <button onclick="rollfun(); openPopup() ; Randomizeques()"  id= "roll" >Roll</button>
+        
         <div class="popup" id="popup">
             <p id="ques"></p>
             <button type="button" onclick="closePopup()" id="option1"></button>
             <button type="button" onclick="closePopup()" id="option2"></button>
             <button type="button" onclick="closePopup()" id="option3"></button>
             <button type="button" onclick="closePopup()" id="option4"></button>
-            </div>
-        <div id="players"></div>
-        <form id="form">
-            <b id = "t1">Name of Player 1:</b> <input type="text" id = p1 placeholder="Player 1" /> <br>
-            <b id = "t2">Name of Player 2:</b> <input type="text" id = p2 placeholder="Player 2" /> <br>
-            <b id = "t3">Name of Player 3:</b> <input type="text" id = p3 placeholder="Player 3" />  <br>
-            <input type = 'Submit' value="Done" id = "but">
-        </form>
+        </div>
+
+        <div id="players">
+            <form id="form">
+                <b id = "t1">Name of Player 1:</b> <input type="text" id = p1 placeholder="Player 1" /> <br>
+                <b id = "t2">Name of Player 2:</b> <input type="text" id = p2 placeholder="Player 2" /> <br>
+                <b id = "t3">Name of Player 3:</b> <input type="text" id = p3 placeholder="Player 3" />  <br>
+                <input type = 'Submit' value="Done" id = "but">
+            </form>
+        </div>
     </div>
     
 <script src="script.js"></script>
