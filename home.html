@@ -13,12 +13,16 @@
     <div id="snakenladderBoard"></div>
     <div id="statistics">
         <div id="gameMessage">Snake and Ladder</div>
-        <img id ="dice" src="" />
+        <p></p>
+        <!-- <img id ="dice" src="" /> -->
         <button onclick="rollfun(); openPopup() ; Randomizeques()">Roll</button>
+        <h2 id="th"></h2>
         <div class="popup" id="popup">
-            <h2>Thank You!</h2>
             <p id="ques"></p>
-            <button type="button" onclick="closePopup()">OK</button>
+            <button type="button" onclick="closePopup()" id="option1"></button>
+            <button type="button" onclick="closePopup()" id="option2"></button>
+            <button type="button" onclick="closePopup()" id="option3"></button>
+            <button type="button" onclick="closePopup()" id="option4"></button>
             </div>
         <div id="players"></div>
         <form id="form">

@@ -23,9 +23,9 @@ var SnakeLadderModule = (function(){
 	  61: 98,
 	};
 	
+	let y = new Boolean(false);
+
 	var questions=[
-		"what is ball?",
-		"what is bat?",
 		"what is Eathquake?",
 		"How many different type of natural disasters are there?",
 		"NIDM",
@@ -34,6 +34,16 @@ var SnakeLadderModule = (function(){
 		"Is It Safe To Return Home",
 
 	]
+
+	var answers = [5,2,1,4,7,10]
+
+	var questionoptions = { "what is Eathquake?":[1,2,4,5],
+	"How many different type of natural disasters are there?":[1,2,3,5],
+	"NIDM":[1,2,3,4],
+	"Landslide prone region":[1,2,3,4],
+	"Flood Effects":[9,8,7,6],
+	"Is It Safe To Return Home":[10,11,12,13]
+	}
 
 
 	var idOfplayerTurn = 0;
@@ -118,6 +128,68 @@ var SnakeLadderModule = (function(){
 		  console.log(randm)
 		  var qt = Randomizequiz();
 		  $("#ques").html(questions[qt]);
+		  var opt = questionoptions[questions[qt]];
+		  $("#option1").html(opt[0]);
+		  $("#option2").html(opt[1]);
+		  $("#option3").html(opt[2]);
+		  $("#option4").html(opt[3]);
+		  $("#option1").click(function(){
+			if(opt[0]==answers[qt]){
+				y = true;
+				alert("yes");
+				$("#th").html("yes");				
+			}
+			else{
+				y = false;
+				alert("no");
+				$("#th").html("no");
+				
+			}
+		  })
+
+		  $("#option2").click(function(){
+			if(opt[1]==answers[qt]){
+				y = true;
+				alert("yes");
+				$("#th").html("yes");				
+			}
+			else{
+				y = false;
+				alert("no");
+				$("#th").html("no");
+				
+			}
+		  })
+		  
+		  $("#option3").click(function(){
+			if(opt[2]==answers[qt]){
+				y = true;
+				alert("yes");
+				$("#th").html("yes");				
+			}
+			else{
+				y = false;
+				alert("no");
+				$("#th").html("no");
+				
+			}
+		  })
+		  $("#option4").click(function(){
+			if(opt[3]==answers[qt]){
+				y = true;
+				alert("yes");
+				$("#th").html("yes");				
+			}
+			else{
+				y = false;
+				alert("no")
+				$("#th").html("no");
+				
+			}
+		  })
+		  
+		  
+		  
 		  idOfplayerTurn = idOfplayerTurn%players.length;
 		  $("button").attr('disabled', true);
 		  $(".legends").removeClass('active');
@@ -129,8 +201,8 @@ var SnakeLadderModule = (function(){
 		  currentPosition += randm;
 		  	if(currentPosition>100){
 				currentPosition = 100
-			}
-
+			}				
+	
       		var $cell = $("#cell_" + currentPosition);
 			$("#player" + idOfplayerTurn).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
 			$("#playerLegend"+idOfplayerTurn).find('span').text(currentPosition); //currentPosition  
@@ -164,12 +236,13 @@ var SnakeLadderModule = (function(){
 			  $("#player" + idOfplayerTurn).css({'left':$cell.position().left + 30,'top':$cell.position().top + 35});
 			  $("#playerLegend"+idOfplayerTurn).find('span').text(currentPosition); //currentPosition  
 			  
-			  var re = /(\d)/;
-			  var imgSrc = $('#dice').attr("src");
-			  var imgSrc = imgSrc.replace(re, randm);
-			  $('#dice').attr("src", imgSrc);
+			//   var re = /(\d)/;
+			//   var imgSrc = $('#dice').attr("src");
+			//   var imgSrc = imgSrc.replace(re, randm);
+			//   $('#dice').attr("src", imgSrc);
         
 			}
+			
       		players[idOfplayerTurn].position = currentPosition;
 			for(j=0;j<players.length;j++){
 				if(j == idOfplayerTurn)
@@ -184,6 +257,7 @@ var SnakeLadderModule = (function(){
 					break
 				}
 			}
+			
 			if(randm != 6){
 				idOfplayerTurn++;
 			}
