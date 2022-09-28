@@ -308,7 +308,43 @@ function openPopup(){
 function closePopup(){
 	popup.classList.remove("open-popup");}
 
+
 function showDiv() {
 	document.getElementById('welcomeDiv').style.display = "block";}
 
 
+
+
+
+
+
+
+// New for info display
+disasterinfo={'019':"this is first",'119':'this is second'}
+
+const quesinfo = document.getElementById('infoques')
+
+let popupinfo  = document.getElementById("popupinfo");
+function openPopupforinfo(){
+	setTimeout(function(){
+		popupinfo.classList.add("open-popup");
+		
+	},100);
+	
+}
+function closePopupinfo(){
+	popupinfo.classList.remove("open-popup");}
+
+//   popup for info for the snake and ladder
+
+function showCoords(event) 
+{
+		var x1 = (event.clientX-368)/96 ;
+		var y1 = (event.clientY+980)/97 ;
+		c1=~~x1.toString();
+		c2=~~y1.toString();
+		c3=c1.toString()+c2.toString();
+		quesinfo.innerText =disasterinfo[c3];
+		openPopupforinfo()
+		document.getElementById("demo").innerHTML = coords;
+}			

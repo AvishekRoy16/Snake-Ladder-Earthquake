@@ -7,12 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
 </head>
 <body>
     
-    <div id="snakenladderBoard"></div>
+    <div id="snakenladderBoard" onclick="showCoords(event)"></div>
     <div id="statistics">
         <div id="gameMessage">Snake and Ladder</div>
+        <p id="demo"></p>
         <button onclick="rollfun(); openPopup();"  id= "roll" >Roll</button>
 
         <div class="popup" id="popup">
@@ -46,6 +48,20 @@
                 <button id="submit" onclick="closePopup();">Submit</button>
             </div>
         </div>
+
+        <div class="popup" id="popupinfo">
+          <!-- <p id="ques"></p>
+          <button type="button" onclick="closePopup()" id="option1"></button>
+          <button type="button" onclick="closePopup()" id="option2"></button>
+          <button type="button" onclick="closePopup()" id="option3"></button>
+          <button type="button" onclick="closePopup()" id="option4"></button> -->
+          <div class="quiz-container" id="infoquiz">
+              <div class="quiz-header">
+                <h2 id="infoques">Question Text</h2>
+              </div>
+              <button id="submit" onclick="closePopupinfo();">Submit</button>
+          </div>
+      </div>
 
         <div id="players">
             <form id="form">
